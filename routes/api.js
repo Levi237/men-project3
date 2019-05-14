@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// import { closureList } from "os";
+  
+
 router.get('/', (req, res) => {
     return res.json({data: 'Received a GET HTTP method'})
 });
@@ -21,3 +24,4 @@ router.delete('/', (req, res) => {
 
 
 module.exports = router;
+
