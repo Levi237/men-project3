@@ -12,6 +12,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/:id/parks', async (req, res) => {
+  try {
+    const foundUser = await User.findById(req.params.id)
+    const park = {
+      id: req.body.park.id,
+      name: req.body.park.title
+    }
+    foundUser.userList.push(park)
+    await foundUser.save()
+    res.json({user: foundUser})
+  } catch(err) {
+    res.json({err})
+  }
+})
+
 router.get('/', (req, res) => {
   return res.json({data: 'received a GET"'})
 });
