@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
-    closureList: [{
+    userList: [{
         id: String,
         name: String
     }]
