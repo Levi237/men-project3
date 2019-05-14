@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
     password: String,
     userList: [{
         id: String,
-        name: String
+        name: String,
+        url: String
     }]
 })
 
