@@ -111,9 +111,30 @@ router.post('/', async (req, res) => {
 });
 
 //------------------------------->  PUT - UPDATE USER INFO ?????????
-router.put('/', (req, res) => {
-  return res.json({ data: "Recieved a PUT"})
+router.put('/:id/edit', async (req, res) => {
+  try {
+    const editUser = await User.findById(req.params.id)
+    console.log(editUser)
+    res.json({ data: editUser})
+  } catch(err) {
+    res.send(err)
+  }
+  
 });
+
+// EDIT
+// router.get('/:id/edit', logUser, async (req, res) => {
+//   try {
+//       const foundUser = await User.findById(req.params.id)
+//       res.render('users/edit.ejs',{
+//           user: foundUser,
+//           logged: req.session.logged,
+//           userTakenMessage: req.session.userTaken
+//       })
+//   } catch (err) {   
+//       res.send(err)
+//   }
+// })
 
 //------------------------------->  LOGIN
 router.post('/login', async (req, res) => {
