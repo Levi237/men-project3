@@ -122,7 +122,20 @@ router.put('/:id/edit', async (req, res) => {
   
 });
 
-// EDIT
+//------------------->  EDIT
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const editUser = await User.findOne({_id: req.body._id})
+    console.log(editUser)
+    res.json({
+      data: editUser,
+      // success: foundUser ? true : false
+      // success: true
+    })
+  } catch(err){
+    res.json(err)
+  }
+})
 // router.get('/:id/edit', logUser, async (req, res) => {
 //   try {
 //       const foundUser = await User.findById(req.params.id)
@@ -177,7 +190,7 @@ router.post('/:id/parks', async (req, res) => {
   }
 })
 
-//------------------------  LOGOUT
+//------------------------>  LOGOUT
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if(err){
