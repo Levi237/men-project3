@@ -59,32 +59,30 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id/:userListId', async (req, res) => {
   try {
-    const deleteItem = await User.userList.findByIdAndRemove(req.params.id)
+    // const deleteItem = await User.userList.findByIdAndRemove(req.params.id)
+    const user = await User.findById(req.params.id)
+    
+    user.userList = user.userList.filter((alert, i) => {
+      console.log('user list id', alert._id.equals(req.params.userListId));
+      return !alert._id.equals(req.params.userListId)
+    })
+    user.save();
+
+    // console.log('user filtered', user.userList);
     res.json({ 
       status: 200,
-      data: deleteItem
+      data: user
     })
+    // res.json('')
   } catch(err) {
+    console.log(err);
+    
     res.send(err)
   }
 });
-// router.delete('/:id', logUser, async (req,res)=>{
-//   try {
-//       const deleteCard = Card.findByIdAndDelete(req.params.id);
-//       const findUser = User.findOne({'cards': req.params.id});
-//       const [deletedCard, foundUser] = await Promise.all([deleteCard,findUser]);
-//       if (foundUser.cards.favorite === true) {
-//           foundUser.favorites.remove(req.params.id);
-//       }
-//       foundUser.cards.remove(req.params.id);
-//       await foundUser.save();
-//       res.redirect(`/users/${req.session.userDbId}`)
-//   } catch(err) {
-//       res.send(err)
-//   }
-// })
+
 
 
 
