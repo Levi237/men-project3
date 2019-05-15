@@ -177,6 +177,19 @@ router.post('/:id/parks', async (req, res) => {
   }
 })
 
+//------------------------  LOGOUT
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if(err){
+      res.json({err});
+    } else {
+      res.json({
+        success: true,
+        message: "logged out!"
+      });
+    }
+  })
+})
 
 //------------------------------->  DELETE LIST ITEM
 router.delete('/:id/:userListId', async (req, res) => {
