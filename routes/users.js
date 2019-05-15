@@ -32,15 +32,31 @@ router.get('/', (req, res) => {
   return res.json({data: 'received a GET"'})
 });
 
-router.post('/', async (req, res) => {
+// router.post('/', async (req, res) => {
+//   try {
+//     const user = await User.create(req.body)
+//     res.json({user})
+//     console.log(user)
+//   } catch(err) {
+//     res.json({err})
+//   }
+// });
+
+router.post('/register', async (req,res)=>{
+
   try {
-    const user = await User.create(req.body)
-    res.json({user})
-    console.log(user)
+      const createdUser = await User.create(req.body);
+      console.log(createdUser, "====================================createdUser")
+      // req.session.userDbId = createdUser._id;
+      // user.save();
+
+      // console.log('user filtered', user.userList);
+      res.json({createdUser})
+
   } catch(err) {
-    res.json({err})
+    res.json(err)
   }
-});
+})
 
 router.put('/', (req, res) => {
   return res.json({ data: "Recieved a PUT"})
