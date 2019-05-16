@@ -125,7 +125,7 @@ router.post('/', async (req, res) => {
 //------------------->  EDIT
 router.put('/:id/edit', async (req, res) => {
   try {
-    const editUser = await User.findById({id: req.params.id})
+    const editUser = await User.findById({username: req.params.username})
     console.log(editUser.data, '<=============users.js editUser.data from Edit router.')
     res.json({
       data: editUser.data,

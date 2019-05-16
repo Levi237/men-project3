@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
     userList: [{
         id: String,
         name: String,
-        url: String
+        url: String,
     }]
 })
 
