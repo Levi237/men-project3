@@ -123,9 +123,9 @@ router.put('/:id/edit', async (req, res) => {
 });
 
 //------------------->  EDIT
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const editUser = await User.findOne({_id: req.body._id})
+    const editUser = await User.findById(req.params.id)
     console.log(editUser)
     res.json({
       data: editUser,
