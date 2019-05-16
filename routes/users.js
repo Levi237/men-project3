@@ -180,8 +180,9 @@ router.post('/:id/parks', async (req, res) => {
     const park = {
       id: req.body.park.id,
       fullName: req.body.park.fullName,
-      name: req.body.park.title,
-      url: req.body.park.url
+      title: req.body.park.title,
+      url: req.body.park.url,
+      latLong: req.body.park.latLong
     }
     foundUser.userList.push(park)
     await foundUser.save()
