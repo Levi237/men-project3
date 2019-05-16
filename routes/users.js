@@ -179,6 +179,7 @@ router.post('/:id/parks', async (req, res) => {
     const foundUser = await User.findById(req.params.id)
     const park = {
       id: req.body.park.id,
+      fullName: req.body.park.fullName,
       name: req.body.park.title,
       url: req.body.park.url
     }
